@@ -5,10 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using Framework.Utility.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
+using ShaderVariantsEditor;
 
 /// <summary>
 /// ShaderVariants 工具类 - 提供 ShaderVariant 收集、合并、上传等功能
@@ -32,7 +31,7 @@ public static class ShaderVariantsHelper
     /// </summary>
     public static void SaveCurrentShaderVariantCollection()
     {
-        FileHelper.CheckPath(TempShaderVariantsPath, true);
+        ShaderVariantFileHelper.CheckPath(TempShaderVariantsPath, true);
         InvokeInternalStaticMethod(typeof(ShaderUtil), "SaveCurrentShaderVariantCollection", TempShaderVariantsFullPath);
     }
 
@@ -139,7 +138,7 @@ public static class ShaderVariantsHelper
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
             using (Stream responseStream = response.GetResponseStream())
             {
-                FileHelper.CheckPath(Path.GetDirectoryName(savePath), false);
+                ShaderVariantFileHelper.CheckPath(Path.GetDirectoryName(savePath), false);
 
                 // 先下载到临时字符串
                 using (StreamReader reader = new StreamReader(responseStream))
@@ -213,7 +212,7 @@ public static class ShaderVariantsHelper
     public static void MergeShaderVariants(string basePath, string tempPath)
     {
         ShaderVariantCollection baseCollection = AssetDatabase.LoadAssetAtPath<ShaderVariantCollection>(basePath);
-        List<string> paths = FileHelper.GetAllFiles(TempShaderVariantsPath, file => !file.EndsWith(".meta"));
+        List<string> paths = ShaderVariantFileHelper.GetAllFiles(TempShaderVariantsPath, file => !file.EndsWith(".meta"));
 
         ShaderVariantDatas baseData = new ShaderVariantDatas(baseCollection);
 

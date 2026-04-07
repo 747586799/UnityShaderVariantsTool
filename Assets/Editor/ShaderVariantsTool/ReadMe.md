@@ -92,6 +92,19 @@ ShaderVariants 编辑器工具是供团队使用的 Unity Shader 变体自动收
 | `ShaderVariantsHelper` | 工具类，提供所有核心功能 |
 | `ShaderVariantsEditorConfig` | 配置数据类 |
 | `AutoUploadShaderVariantTool` | 自动上传工具（退出播放模式时触发） |
+| `ShaderVariantDatas` | Shader 变体数据层，处理解析、合并、比对 |
+| `ShaderVariantTimeHelper` | 时间工具类（本地化） |
+| `ShaderVariantFileHelper` | 文件工具类（本地化） |
+| `ShaderVariantListExtensions` | List 扩展方法（本地化） |
+
+## 独立性说明
+
+本工具已设计为独立模块，所有依赖的工具类都已内聚在 `ShaderVariantsEditor` 命名空间下：
+- `ShaderVariantTimeHelper` - 时间戳计算
+- `ShaderVariantFileHelper` - 文件操作
+- `ShaderVariantListExtensions` - List 深拷贝扩展
+
+不需要依赖项目中的其他工具类，可直接复制 `Assets/Editor/ShaderVariants/` 目录到其他 Unity 项目使用。
 
 ## 注意事项
 

@@ -3,11 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using Framework.Utility.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 /// <summary>
 /// ShaderVariants 编辑器窗口

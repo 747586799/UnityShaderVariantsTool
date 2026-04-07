@@ -1,9 +1,8 @@
 ﻿#if UNITY_EDITOR
 using System;
-using Helper;
+using ShaderVariantsEditor;
 using UnityEditor;
 using UnityEngine;
-using UnityFramework.Utility;
 
 namespace AutoUploadShaderVariant
 {
@@ -43,7 +42,7 @@ namespace AutoUploadShaderVariant
                 if (EditorPrefs.HasKey("OnCheckShaderVariantLastTime"))
                 {
                     long lastTime = long.Parse(EditorPrefs.GetString("OnCheckShaderVariantLastTime"));
-                    long nowTime = TimeHelper.ClientNowMillisecond();
+                    long nowTime = ShaderVariantTimeHelper.ClientNowMillisecond();
                     if (lastTime + 10 * 60 * 1000 > nowTime)
                     {
                         EditorUtility.ClearProgressBar();
@@ -69,7 +68,7 @@ namespace AutoUploadShaderVariant
                     config.ftpPassword);
 
                 EditorUtility.DisplayProgressBar("CheckShaderVariant", "ClearCurrentShaderVariantCollection", 0.4f);
-                EditorPrefs.SetString("OnCheckShaderVariantLastTime", TimeHelper.ClientNowMillisecond().ToString());
+                EditorPrefs.SetString("OnCheckShaderVariantLastTime", ShaderVariantTimeHelper.ClientNowMillisecond().ToString());
             }
             catch (Exception e)
             {

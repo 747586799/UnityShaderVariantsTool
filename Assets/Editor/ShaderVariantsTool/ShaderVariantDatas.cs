@@ -1,10 +1,9 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
-using Framework.Utility.Utility;
-using Helper;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using ShaderVariantsEditor;
 
 public class ShaderVariantDatas
 {
