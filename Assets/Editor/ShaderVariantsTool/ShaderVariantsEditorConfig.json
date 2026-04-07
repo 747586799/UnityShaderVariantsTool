@@ -1,0 +1,22 @@
+{
+    "shaderVariantsPath": "Assets/BundleRes/Shader/ShaderVariants.shadervariants",
+    "customRemoveShaderNames": [
+        "Hidden",
+        "/VR/",
+        "Universal Render Pipeline/Lit",
+        "Universal Render Pipeline/Nature/SpeedTree",
+        "Unlit/TestReportShader",
+        "Custom/Test Shader",
+        "SpeedTree",
+        "Skybox"
+    ],
+    "customRemovePaths": [],
+    "customKeepPaths": [
+        "Assets/BundleRes"
+    ],
+    "ftpServer": "ftp://192.168.1.15/",
+    "ftpRemotePath": "ShaderVariants/DiggingPlanet/",
+    "ftpUsername": "anonymous",
+    "ftpPassword": "",
+    "enableAutoUpload": false
+}
