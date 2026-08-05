@@ -214,13 +214,16 @@ public class ShaderVariantsEditorWindow : EditorWindow
                 {
                     _config.shaderVariantsPath = path;
                 }
+
                 LoadShaderVariants();
             }
         }
+
         if (GUILayout.Button("加载", GUILayout.Width(50)))
         {
             LoadShaderVariants();
         }
+
         EditorGUILayout.EndHorizontal();
 
         if (_sourceCollection != null)
@@ -270,10 +273,11 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     _hasUnsavedChanges = true;
                 }
             }
+
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginVertical("box");
-            foreach (var name in _customRemoveShaderNames)
+            foreach (var name in _customRemoveShaderNames.ToList())
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(name);
@@ -282,8 +286,10 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     _customRemoveShaderNames.Remove(name);
                     _hasUnsavedChanges = true;
                 }
+
                 EditorGUILayout.EndHorizontal();
             }
+
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.Space(5);
@@ -301,6 +307,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     _hasUnsavedChanges = true;
                 }
             }
+
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginVertical("box");
@@ -313,8 +320,10 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     _customRemovePaths.Remove(path);
                     _hasUnsavedChanges = true;
                 }
+
                 EditorGUILayout.EndHorizontal();
             }
+
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.Space(5);
@@ -332,6 +341,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     _hasUnsavedChanges = true;
                 }
             }
+
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginVertical("box");
@@ -344,8 +354,10 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     _customKeepPaths.Remove(path);
                     _hasUnsavedChanges = true;
                 }
+
                 EditorGUILayout.EndHorizontal();
             }
+
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.Space(5);
@@ -365,6 +377,8 @@ public class ShaderVariantsEditorWindow : EditorWindow
         GUILayout.Label("Merge ShaderVariants", EditorStyles.boldLabel);
 
         _config.enableAutoUpload = EditorGUILayout.Toggle("启用自动上传", _config.enableAutoUpload);
+
+        _config.stripShaderVariantsMode = (StripShaderVariantsMode)EditorGUILayout.EnumPopup("打包剔除模式", _config.stripShaderVariantsMode);
 
         EditorGUILayout.Space();
 
@@ -398,10 +412,12 @@ public class ShaderVariantsEditorWindow : EditorWindow
         {
             RefreshFtpFileList();
         }
+
         if (GUILayout.Button("下载所有并合并"))
         {
             DownloadAndMerge();
         }
+
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
@@ -421,6 +437,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                 }
             }
         }
+
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.HelpBox(
@@ -524,6 +541,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                 {
                     _selectedVariants[group.Shader].Add(i);
                 }
+
                 _hasUnsavedChanges = true;
             }
 
@@ -572,6 +590,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     {
                         _selectedVariants[group.Shader].Add(i);
                     }
+
                     _hasUnsavedChanges = true;
                 }
             }
@@ -615,6 +634,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
 
                     EditorGUILayout.EndHorizontal();
                 }
+
                 EditorGUI.indentLevel--;
             }
 
@@ -647,6 +667,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
         {
             SaveChanges();
         }
+
         GUI.backgroundColor = Color.white;
 
         if (GUILayout.Button("取消选择", GUILayout.Height(35), GUILayout.Width(80)))
@@ -655,6 +676,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
             {
                 _selectedVariants[shader].Clear();
             }
+
             _hasUnsavedChanges = false;
         }
 
@@ -686,8 +708,10 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     {
                         _selectedVariants[group.Shader].Add(i);
                     }
+
                     _shaderFoldouts[group.Shader] = true;
                 }
+
                 markedCount++;
                 Debug.Log($"标记移除 Shader: {shaderName}, 原因：{reason}");
             });
@@ -1008,6 +1032,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     {
                         File.Delete(metaFile);
                     }
+
                     Debug.Log($"已删除：{file}");
                 }
                 catch (Exception ex)
@@ -1015,6 +1040,7 @@ public class ShaderVariantsEditorWindow : EditorWindow
                     Debug.LogError($"删除文件失败：{file}, {ex.Message}");
                 }
             }
+
             AssetDatabase.Refresh();
             EditorUtility.ClearProgressBar();
         }

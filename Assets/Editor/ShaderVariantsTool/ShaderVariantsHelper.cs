@@ -504,6 +504,25 @@ public static class ShaderVariantsHelper
 }
 
 /// <summary>
+/// Shader 变体剔除模式
+/// </summary>
+public enum StripShaderVariantsMode
+{
+    /// <summary>
+    /// 完全不剔除
+    /// </summary>
+    None = 0,
+    /// <summary>
+    /// 有数据的按白名单剔除，没有数据的不修改
+    /// </summary>
+    StripKnown = 1,
+    /// <summary>
+    /// 完全按照 ShaderVariants 白名单剔除
+    /// </summary>
+    StripAll = 2,
+}
+
+/// <summary>
 /// ShaderVariants 编辑器配置
 /// </summary>
 [Serializable]
@@ -520,6 +539,7 @@ public class ShaderVariantsEditorConfig
     public string ftpUsername = "anonymous";
     public string ftpPassword = "";
     public bool enableAutoUpload = false;
+    public StripShaderVariantsMode stripShaderVariantsMode = StripShaderVariantsMode.None;
 }
 
 /// <summary>

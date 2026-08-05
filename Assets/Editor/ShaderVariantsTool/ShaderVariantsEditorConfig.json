@@ -1,5 +1,5 @@
 {
-    "shaderVariantsPath": "Assets/BundleRes/Shader/ShaderVariants.shadervariants",
+    "shaderVariantsPath": "Assets/BundleRes/Arts/Shaders/ShaderVariants.shadervariants",
     "customRemoveShaderNames": [
         "Hidden",
         "/VR/",
@@ -18,5 +18,6 @@
     "ftpRemotePath": "ShaderVariants/DiggingPlanet/",
     "ftpUsername": "anonymous",
     "ftpPassword": "",
-    "enableAutoUpload": false
+    "enableAutoUpload": true,
+    "stripShaderVariantsMode": 1
 }
